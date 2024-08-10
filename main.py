@@ -1,4 +1,3 @@
-import cv2
 import os
 from rembg import remove
 from PIL import Image
@@ -25,8 +24,8 @@ def allowed_file(filename):
 
 
 def remove_background(input_path, output_path):
-    input = Image.open(input_path)
-    output = remove(input)
+    input_image = Image.open(input_path)
+    output = remove(input_image)
     output.save(output_path)
 
 
@@ -43,7 +42,7 @@ def remback():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         rembg_img_name = filename.split('.')[0] + "_rembg.png"
         remove_background(UPLOAD_FOLDER + '/' + filename, UPLOAD_FOLDER + '/' + rembg_img_name)
-        return render_template('home.html', org_img_name=filename, rembg_img_name=rembg_img_name)
+        return render_template('home.html', org_img_name=filename, rembg_img_name=rembg_img_name, )
 
 
 if __name__ == '__main__':
